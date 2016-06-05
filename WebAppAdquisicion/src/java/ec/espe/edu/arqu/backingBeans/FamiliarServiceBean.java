@@ -5,17 +5,17 @@
  */
 package ec.espe.edu.arqu.backingBeans;
 
+import ec.espe.edu.arqui.dao.ClienteFacade;
 import ec.espe.edu.arqui.em.webservice.Empleado;
 import ec.espe.edu.arqui.em.webservice.Familiar;
 import ec.espe.edu.arqui.model.Cliente;
 import ec.espe.edu.arqui.model.DetalleAdquisicion;
 import ec.espe.edu.arqui.webServiceClient.WebServiceController;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -34,6 +34,8 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
 
     private WebServiceController webServiceController;
 
+    @EJB
+    private ClienteFacade clienteFacade;
     /**
      * lista de clientes para setear en una tabla.
      */
@@ -188,9 +190,12 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
                 calentar.setTime(this.detalleAdquisicion.getFechaFin());
                 XMLGregorianCalendar fechaEnvioServicio= DatatypeFactory.newInstance().newXMLGregorianCalendar(calentar);
                 this.familiar.setFechaNacimientoFamilia(fechaEnvioServicio);
+                this.familiar.setNombreFamiliares(this.cliente.getNombre()+" "+this.cliente.getApellido());
                 System.out.println(this.familiar.getIdEmpleado()+" "+this.familiar.getParentescoFamilia()+" "+this.familiar.getNombreFamiliares()+" "+this.familiar.getSexoFamilia()+" "+this.familiar.getFechaNacimientoFamilia());
                 this.webServiceController.insertarFamiliar(this.familiar);
+                this.clienteFacade.create(cliente);
                 this.familiares = this.webServiceController.obtenerFamiliar();
+                
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro el departamento: " + this.familiar.getNombreFamiliares(), null));
             } catch (Exception e) {
 

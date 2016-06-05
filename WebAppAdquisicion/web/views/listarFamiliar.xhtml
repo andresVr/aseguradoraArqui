@@ -72,12 +72,46 @@
                 <p:panel header="#{familiarServiceBean.title}" style="width: 100%" rendered="#{familiarServiceBean.selecionarCliente }">
                  
                         <h:panelGrid columns="3" style="margin: 0 auto;">
+                            
+                            <p:outputLabel for="txtDNI" value="DNI: "/>
+                            <p:inputText id="txtDNI" value="#{familiarServiceBean.cliente.dni }" required="true"  requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                                <f:validateLength minimum="3" maximum="30" />
+                            </p:inputText> 
+                            <p:message for="txtDNI"/>
+
+                            
                             <p:outputLabel for="txtNombre" value="Nombre: " rendered="#{familiarServiceBean.disabledModificar}"/>
-                            <p:inputText id="txtNombre" value="#{familiarServiceBean.familiar.nombreFamiliares }" required="true" rendered="#{familiarServiceBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                            <p:inputText id="txtNombre" value="#{familiarServiceBean.cliente.nombre}" required="true" rendered="#{familiarServiceBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
                                 <f:validateLength minimum="3" maximum="30" />
                             </p:inputText> 
                             <p:message for="txtNombre"/>
 
+                            <p:outputLabel for="txtApellido" value="Apellido: " rendered="#{familiarServiceBean.disabledModificar}"/>
+                            <p:inputText id="txtApellido" value="#{familiarServiceBean.cliente.apellido }" required="true" rendered="#{familiarServiceBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                                <f:validateLength minimum="3" maximum="30" />
+                            </p:inputText> 
+                            <p:message for="txtApellido"/>
+                            
+                             <p:outputLabel for="txtTelefono" value="Teléfono: " rendered="#{familiarServiceBean.disabledModificar}"/>
+                             <p:inputText id="txtTelefono" value="#{familiarServiceBean.cliente.telefono }" required="true" rendered="#{familiarServiceBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                                <f:validateLength minimum="3" maximum="30" />
+                            </p:inputText> 
+                            <p:message for="txtTelefono"/>
+                            
+                            <p:outputLabel for="txtDireccion" value="Dirección: " rendered="#{familiarServiceBean.disabledModificar}"/>
+                            <p:inputText id="txtDireccion" value="#{familiarServiceBean.cliente.direccion }" required="true" rendered="#{familiarServiceBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                                <f:validateLength minimum="3" maximum="150" />
+                            </p:inputText> 
+                            <p:message for="txtDireccion"/>
+                           
+                            
+                              <p:outputLabel for="txtCorreo" value="Correo "/>
+                              <p:inputText id="txtCorreo" value="#{familiarServiceBean.cliente.correo}" required="true" requiredMessage="Campo Requerido" validatorMessage="Email no es válido">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            <f:validateLength minimum="3" maximum="50" />
+                        </p:inputText>
+                        <p:message for="txtCorreo"/>
+                        
                             <p:outputLabel for="txtfechaIngreso" value="Fecha de nacimiento:  "/>
                                 <p:calendar id="txtfechaIngreso" locale="es" pattern="dd/MM/yyyy" value="#{familiarServiceBean.detalleAdquisicion.fechaFin}" required="true" requiredMessage="Campo Requerido"/>
                             <p:message for="txtfechaIngreso"/>
