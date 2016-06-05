@@ -40,6 +40,7 @@ public class Familiar implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_FAMILIARES")
     private Integer idFamiliares;
+  
     @Size(max = 50)
     @Column(name = "NOMBRE_FAMILIARES")
     private String nombreFamiliares;
@@ -110,6 +111,7 @@ public class Familiar implements Serializable {
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
+
 
     @Override
     public int hashCode() {
