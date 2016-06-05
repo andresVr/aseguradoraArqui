@@ -114,7 +114,13 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
         super.modificar();
         this.familiar = new Familiar();
         this.setTitle("Modificar Familiar");
-       
+         this.detalleAdquisicion=new DetalleAdquisicion();
+       this.familiar.setFechaNacimientoFamilia(this.familiarSelected.getFechaNacimientoFamilia());
+       this.familiar.setIdEmpleado(this.familiarSelected.getIdEmpleado());
+       this.familiar.setIdFamiliares(this.familiarSelected.getIdFamiliares());
+       this.familiar.setNombreFamiliares(this.familiarSelected.getNombreFamiliares());
+       this.familiar.setParentescoFamilia(this.familiarSelected.getParentescoFamilia());
+       this.familiar.setSexoFamilia(this.familiarSelected.getSexoFamilia());
     }
 
     /**
@@ -140,7 +146,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     @Override
     public void cancelar() {
         super.cancelar();
-        System.err.println("aaaaa");
+        
         this.setFamiliarSelected(null);
     }
 
@@ -193,8 +199,13 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
         } else {
             try {
                 //Llamar a modificar no a crear
+                 GregorianCalendar calentar=new GregorianCalendar();
+                calentar.setTime(this.detalleAdquisicion.getFechaFin());
+                XMLGregorianCalendar fechaEnvioServicio= DatatypeFactory.newInstance().newXMLGregorianCalendar(calentar);
+                this.familiar.setFechaNacimientoFamilia(fechaEnvioServicio);
+                
                 this.webServiceController.actualizarFamiliar(this.familiar);
-         
+         this.familiares = this.webServiceController.obtenerFamiliar();
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se modifico el departamento: " + this.familiar.getNombreFamiliares(), null));
             } catch (Exception e) {
 
@@ -203,6 +214,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
         }
 
         this.reset();
+        this.setSelecionarCliente(null);
         this.setFamiliarSelected(null);
     }
 

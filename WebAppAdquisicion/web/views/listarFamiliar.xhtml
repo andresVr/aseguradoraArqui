@@ -69,7 +69,7 @@
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
-                <p:panel header="#{familiarServiceBean.title}" style="width: 100%" rendered="#{familiarServiceBean.selecionarCliente or familiarServiceBean.enModificar}">
+                <p:panel header="#{familiarServiceBean.title}" style="width: 100%" rendered="#{familiarServiceBean.selecionarCliente }">
                  
                         <h:panelGrid columns="3" style="margin: 0 auto;">
                             <p:outputLabel for="txtNombre" value="Nombre: " rendered="#{familiarServiceBean.disabledModificar}"/>
@@ -97,6 +97,30 @@
 
                             </p:selectOneMenu>
                             <p:message for="txtGenero"/>
+
+
+                            <p:commandButton value="Aceptar" actionListener="#{familiarServiceBean.aceptar()}"  update="@form"/>
+                            <p:commandButton value="Canelar" actionListener="#{familiarServiceBean.cancelar()}" immediate="true" update="@form"/>
+                        </h:panelGrid>
+                 
+                </p:panel>
+                    <p:panel header="#{familiarServiceBean.title}" style="width: 100%" rendered="#{familiarServiceBean.enModificar}">
+                 
+                        <h:panelGrid columns="3" style="margin: 0 auto;">
+                          
+
+                            <p:outputLabel for="txtfechaIngresoM" value="Fecha de nacimiento:  "/>
+                                <p:calendar id="txtfechaIngresoM" locale="es" pattern="dd/MM/yyyy" value="#{familiarServiceBean.detalleAdquisicion.fechaFin}" required="true" requiredMessage="Campo Requerido"/>
+                            <p:message for="txtfechaIngresoM"/>
+
+                            <p:outputLabel for="txtParentescoM" value="Sexo: "/>
+                            <p:selectOneMenu  id="txtParentescoM" value="#{familiarServiceBean.familiar.parentescoFamilia}" required="true" requiredMessage="Campo Requerido">
+                                <f:selectItem itemValue="HIJO" itemLabel="Hijo/a"/>
+                                <f:selectItem itemValue="ESPOSO" itemLabel="Esposo/a"/>
+                                <f:selectItem itemValue="SOBRINO" itemLabel="Sobrino/a"/>
+
+                            </p:selectOneMenu>
+
 
 
                             <p:commandButton value="Aceptar" actionListener="#{familiarServiceBean.aceptar()}"  update="@form"/>
