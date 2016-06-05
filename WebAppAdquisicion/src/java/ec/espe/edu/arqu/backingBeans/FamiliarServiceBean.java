@@ -77,6 +77,8 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     private Boolean disabledModificar = true;
 
     private Boolean selecionarCliente=false;
+    
+    private Boolean desactivarBotones=false;
     /**
      * metodo que se inicializa despues de cargar el formulario contiene la
      * anotacion postconstructor.
@@ -105,6 +107,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     this.familiar.setIdEmpleado(this.empleadoSelected);
     System.out.println(this.familiar.getIdEmpleado()+" "+this.familiar.getFechaNacimientoFamilia());
     this.selecionarCliente=true;
+    this.desactivarBotones=true;
     
     }
     /**
@@ -148,8 +151,9 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     @Override
     public void cancelar() {
         super.cancelar();
-        
+        this.setSelecionarCliente(null);
         this.setFamiliarSelected(null);
+        this.setDesactivarBotones(null);
     }
 
     /**
@@ -337,6 +341,14 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
 
     public void setDetalleAdquisicion(DetalleAdquisicion detalleAdquisicion) {
         this.detalleAdquisicion = detalleAdquisicion;
+    }
+
+    public Boolean getDesactivarBotones() {
+        return desactivarBotones;
+    }
+
+    public void setDesactivarBotones(Boolean desactivarBotones) {
+        this.desactivarBotones = desactivarBotones;
     }
 
 }
