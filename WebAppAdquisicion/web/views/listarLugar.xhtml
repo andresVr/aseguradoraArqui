@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/plantillas/template2.xhtml">
+            <ui:define name="lista">
+                <p:outputLabel><h1>Lugar</h1></p:outputLabel>
+                <p:dataTable id="singleLugar" var="lugar" value="#{lugarBean.lugares}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                             style="width: 100%;" styleClass="textlb" selectionMode="single" selection="#{lugarBean.lugarSelected}" rowKey="#{lugar.idLugar}" >
+                    <p:column headerText="No">
+                        <h:outputText value="#{lugar.idLugar}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre" filterBy="#{lugar.nombreLugar}" filterMatchMode="contains" >
+                        <h:outputText value="#{lugar.nombreLugar}" />
+                    </p:column>
+
+                    <p:column headerText="Descripción" >
+                        <h:outputText value="#{lugar.descripcionLugar}" />
+                    </p:column>
+
+                    <p:ajax event="rowSelect" update="@form" listener="#{lugarBean.onRowSelect}" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Nuevo" actionListener="#{lugarBean.nuevo()}" immediate="true" update="@form" disabled="#{lugarBean.lugarSelected ne null}" styleClass=""/>
+                        <p:commandButton value="Modificar" actionListener="#{lugarBean.modificar()}" immediate="true" update="@form" disabled="#{lugarBean.lugarSelected eq null}"/>
+                        <p:commandButton value="Borrar" actionListener="#{lugarBean.eliminar()}" immediate="true" update="@form" disabled="#{lugarBean.lugarSelected eq null}"/>
+                    </f:facet>
+                </p:dataTable>
+                
+                <p:panel header="#{lugarBean.title}" style="width: 100%" rendered="#{lugarBean.enNuevo or lugarBean.enModificar}">
+
+                   
+                    <p:outputLabel for="txtNombre" value="Nombre: " rendered="#{lugarBean.disabledModificar}"/>
+                    <p:inputText id="txtNombre" value="#{lugarBean.lugar.nombreLugar }" required="true" rendered="#{lugarBean.disabledModificar}" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                            <f:validateLength minimum="3" maximum="30" />
+                        </p:inputText> 
+                        <p:message for="txtNombre"/>
+
+
+                        <p:outputLabel for="txtDescripcion" value="Descripción "/>
+                        <p:inputText id="txtDescripcion" value="#{lugarBean.lugar.descripcionLugar}" required="true" requiredMessage="Campo Requerido">
+                            <f:validateLength minimum="3" maximum="30" />
+                        </p:inputText>
+                        <p:message for="txtDescripcion"/>
+
+
+                        <p:commandButton value="Aceptar" actionListener="#{lugarBean.aceptar()}"  update="@form"/>
+                        <p:commandButton value="Canelar" actionListener="#{lugarBean.cancelar()}" immediate="true" update="@form"/>
+                   
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

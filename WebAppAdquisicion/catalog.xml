@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/WebAppEmpresa/EmpresaServicio?wsdl" uri="src/conf/xml-resources/web-service-references/EmpresaServicio/wsdl/localhost_8080/WebAppEmpresa/EmpresaServicio.wsdl"/>
+    <system systemId="http://localhost:8080/WebAppEmpresa/EmpresaServicio?xsd=1" uri="src/conf/xml-resources/web-service-references/EmpresaServicio/wsdl/localhost_8080/WebAppEmpresa/EmpresaServicio.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/WebAppEmpresa/EmpresaWebService?wsdl" uri="src/conf/xml-resources/web-service-references/EmpresaWebService/wsdl/localhost_8080/WebAppEmpresa/EmpresaWebService.wsdl"/>
+    <system systemId="http://localhost:8080/WebAppEmpresa/EmpresaWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/EmpresaWebService/wsdl/localhost_8080/WebAppEmpresa/EmpresaWebService.xsd_1.xsd"/>
+</catalog>

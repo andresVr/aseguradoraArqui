@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://service.em.arqui.edu.espe.ec/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.em.arqui.edu.espe.ec/">
+
+<xs:element name="departamentos" type="tns:departamentos"/>
+
+<xs:element name="empleado" type="tns:empleado"/>
+
+<xs:element name="familiar" type="tns:familiar"/>
+
+<xs:element name="lugar" type="tns:lugar"/>
+
+<xs:element name="obtenerEmpleado" type="tns:obtenerEmpleado"/>
+
+<xs:element name="obtenerEmpleadoResponse" type="tns:obtenerEmpleadoResponse"/>
+
+<xs:element name="obtenerFamiliar" type="tns:obtenerFamiliar"/>
+
+<xs:element name="obtenerFamiliarResponse" type="tns:obtenerFamiliarResponse"/>
+
+<xs:element name="obtenerLugar" type="tns:obtenerLugar"/>
+
+<xs:element name="obtenerLugarResponse" type="tns:obtenerLugarResponse"/>
+
+<xs:complexType name="obtenerEmpleado">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleado">
+<xs:sequence>
+<xs:element name="cargo" type="xs:string" minOccurs="0"/>
+<xs:element name="direccionEmpleado" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaInicioDirector" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaNacimientoEmpleado" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idDepartamento" type="tns:departamentos" minOccurs="0"/>
+<xs:element name="idEmpleado" type="xs:int" minOccurs="0"/>
+<xs:element name="nombreEmpleado" type="xs:string" minOccurs="0"/>
+<xs:element name="numeroSeguridadSocialEmpleado" type="xs:string" minOccurs="0"/>
+<xs:element name="salarioEmpleado" type="xs:decimal" minOccurs="0"/>
+<xs:element name="sexoEmpleado" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="departamentos">
+<xs:sequence>
+<xs:element name="idDepartamento" type="xs:int" minOccurs="0"/>
+<xs:element name="nombreDepartamento" type="xs:string" minOccurs="0"/>
+<xs:element name="numeroDepartamento" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerLugar">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerLugarResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lugar" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="lugar">
+<xs:sequence>
+<xs:element name="descripcionLugar" type="xs:string" minOccurs="0"/>
+<xs:element name="idLugar" type="xs:int" minOccurs="0"/>
+<xs:element name="nombreLugar" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerFamiliar">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerFamiliarResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:familiar" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="familiar">
+<xs:sequence>
+<xs:element name="fechaNacimientoFamilia" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idEmpleado" type="tns:empleado" minOccurs="0"/>
+<xs:element name="idFamiliares" type="xs:int" minOccurs="0"/>
+<xs:element name="nombreFamiliares" type="xs:string" minOccurs="0"/>
+<xs:element name="parentescoFamilia" type="xs:string" minOccurs="0"/>
+<xs:element name="sexoFamilia" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

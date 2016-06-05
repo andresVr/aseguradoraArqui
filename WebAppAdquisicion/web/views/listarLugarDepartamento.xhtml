@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/plantillas/template2.xhtml">
+            <ui:define name="lista">
+                <p:outputLabel><h1>Empleados</h1></p:outputLabel>
+                <p:dataTable id="singleRelacion" var="relacion" value="#{lugarDepartamentoBean.lugarDepartamentos}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                             style="width: 100%;" styleClass="textlb" selectionMode="single" selection="#{lugarDepartamentoBean.lugarDepartamentoSelected}" rowKey="#{relacion.lugarDepartamentoPK}" >
+                    <p:column headerText="Departamento">
+                        <h:outputText value="#{relacion.departamentos.nombreDepartamento}" />
+                    </p:column>
+
+                    <p:column headerText="Lugar">
+                        <h:outputText value="#{relacion.lugar.nombreLugar}" />
+                    </p:column>
+
+                    <p:column headerText="Detalle" >
+                        <h:outputText value="#{relacion.detalleLugarDepartamento}" />
+                    </p:column>
+                    <p:ajax event="rowSelect" update="@form" listener="#{lugarDepartamentoBean.onRowSelect}" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Nuevo" actionListener="#{lugarDepartamentoBean.nuevo()}" immediate="true" update="@form" disabled="#{lugarDepartamentoBean.lugarDepartamentoSelected ne null}" styleClass=""/>
+                        <p:commandButton value="Borrar" actionListener="#{lugarDepartamentoBean.eliminar()}" immediate="true" update="@form" disabled="#{lugarDepartamentoBean.lugarDepartamentoSelected eq null}"/>
+                    </f:facet>
+                </p:dataTable>
+                <p:panel header="#{lugarDepartamentoBean.title}" style="width: 100%" rendered="#{lugarDepartamentoBean.enNuevo}">
+
+                    <h:panelGrid columns="3" style="margin: 0 auto;">
+                        <p:outputLabel for="console" value="Basic:" />
+                        <p:selectOneMenu id="console" value="#{lugarDepartamentoBean.departamentpServicioSelected.idDepartamento}" style="width:125px">
+                            <f:selectItem itemLabel="Seleccionar.." itemValue="" />
+                            <f:selectItem itemLabel="Ingraestructura" itemValue="1" />
+                            <f:selectItem  itemLabel="Biotecnología" itemValue="2" />
+                            <f:selectItem  itemLabel="Geográfica" itemValue="3" />
+                            <f:selectItem  itemLabel="Ciencias Exactas" itemValue="4" />
+                            <f:selectItem  itemLabel="Tics" itemValue="5" />
+                            <f:selectItem  itemLabel="Electronica" itemValue="6" />
+                            <f:selectItem  itemLabel="Agricultura" itemValue="7" />
+                            <f:selectItem  itemLabel="Ciencias Económicas" itemValue="8" />
+
+
+                        </p:selectOneMenu>
+                       
+                        
+
+                        <p:outputLabel for="lugar" value="Lugar: " />
+                        <p:selectOneMenu id="lugar" value="#{lugarDepartamentoBean.lugarSelected.nombreLugar}">
+                            <f:selectItem itemLabel="Seleccionar.." itemValue="" />
+                            <f:selectItems value="#{lugarDepartamentoBean.lugarList}" />
+                        </p:selectOneMenu>
+                          <p:message for="lugar"/>
+                        
+                        <p:outputLabel for="txtNombre" value="Detalle: " />
+                        <p:inputText id="txtNombre" value="#{lugarDepartamentoBean.lugarDepartamento.detalleLugarDepartamento }" required="true"  requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                            <f:validateLength minimum="3" maximum="100" />
+                        </p:inputText> 
+                    
+                        <p:commandButton value="Aceptar" actionListener="#{lugarDepartamentoBean.aceptar()}"  update="@form"/>
+                        <p:commandButton value="Cancelar" actionListener="#{lugarDepartamentoBean.cancelar()}" immediate="true"  update="@form"/>
+
+
+                    </h:panelGrid>
+
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
