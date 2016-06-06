@@ -223,6 +223,16 @@ span.menu {
     min-height:200px;
     background-size: cover;
 }
+.fondoPrimero{
+    padding-top: 60px;
+    height: 100%;
+    width: 100%;
+}
+.fondoSegundo{
+    padding-top: 120px;
+    height: 100%;
+    width: 100%;
+}
 .banner-bottom {
     margin: 12em auto 0em;
     text-align: center;

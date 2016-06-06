@@ -106,7 +106,7 @@ public class DetalleAdquisicion implements Serializable {
     }
 
     public void setSeguro(Seguro seguro) {
-        this.seguro = seguro;
+                    this.seguro = seguro;
     }
 
     @Override
