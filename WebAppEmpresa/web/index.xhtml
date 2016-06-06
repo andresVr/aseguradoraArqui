@@ -7,27 +7,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:body>
-        <ui:composition template="/plantillas/template2.xhtml">
+        <ui:composition template="/plantillas/template1.xhtml">
             <ui:define name="lista">
-                <p:outputLabel><h1>Familiares</h1></p:outputLabel>
-                <p:dataTable id="singleFamiliar" var="familiar" value="#{familiarServiceBean.familiares}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
-                             style="width: 100%;" styleClass="textlb" selectionMode="single" rowKey="#{familiar.idFamiliares}" >
-                    <p:column headerText="ID" >
-                        <h:outputText value="#{familiar.idEmpleado}" />
-                    </p:column>
-
-                    <p:column headerText="Nombre"  >
-                        <h:outputText value="#{familiar.nombreFamiliares}  " />
-                    </p:column>
-
-                    <p:column headerText="Parentesco" >
-                        <h:outputText value="#{familiar.parentescoFamilia}" />
-                    </p:column>
-                  
-                  
-                  
-                </p:dataTable>
-                
+               
               
             </ui:define>
         </ui:composition>

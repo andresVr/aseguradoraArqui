@@ -26,6 +26,17 @@ a:hover {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
 }
+.fondoPrimero{
+ margin-top:  50px;
+ 
+}
+.fondoSegudno{
+ padding-top: 20px;
+ 
+}
+.letra{
+    color:  #000;
+}
 @font-face {
     font-family: 'Hind-Regular';
     src:url(../fonts/Hind-Regular.ttf) format('truetype');
@@ -163,7 +174,7 @@ nav ul > li.sub li.sub{
 .fondo h1 {
     font-size: 3em;
     margin: 0.3em;
-    color:#f6e9da;
+    color:#d3bda5;
     font-family: 'Squada One', cursive;
     text-align: center;
 }

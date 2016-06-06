@@ -18,6 +18,7 @@
         <h:outputScript library="js" name="spanishLocale.js"/>
     </h:head>
     <h:body>
+        
         <!--banner start here-->
         <div class="banner">
             <div class="header">
@@ -26,6 +27,28 @@
                         <div class="logo">
                             <h1><a href="index.xhtml">Spotlights-Wires</a></h1>
                         </div>
+                                                <div>
+                            <span class="menu"> <img src="images/icon.png" alt=""/></span>
+                            <nav>
+                                <ul>
+                                    <li><a href="#{facesContext.externalContext.requestContextPath}/faces/index.xhtml">Inicio</a></li> 
+                                    <li><a href="#{facesContext.externalContext.requestContextPath}/faces/views/listarAdquisicion.xhtml">Adquisiciones</a></li> 
+
+                                    <li href="#{facesContext.externalContext.requestContextPath}/faces/index.xhtml"><a>Cerrar Sesion</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- script-for-menu -->
+                            <script>
+                                $("span.menu").click(function () {
+                                    $("ul.res").slideToggle(300, function () {
+                                        // Animation complete.
+                                    });
+                                });
+                            </script>
+                            <!-- /script-for-menu -->
+                        </div>
+
                         <div class="top-nav">
                             <h:form>
                                 <p:growl id="growl" showDetail="true" life="3000"  />    
@@ -41,9 +64,9 @@
                         <ul class="slides">
                             <li>
                                 <div class="banner-bottom">
-                                    <h2>Proyecto Maldito2</h2>
+                                    <h2>Proyecto Monster</h2>
                                     <p>Bienvenidos</p>
-                                    <a href="#bann-info">Leer Mas</a>
+                                  
                                 </div>
                             </li>
                             <!-- <li>
@@ -159,7 +182,7 @@
                     <div class="clearfix"> </div>
                 </div>
                 <div class="copyright">
-                    <p>© 2015 Proyecto Maldito 2. Todos los derechos reservados | Design by  <a href="" target="_blank">  R-R S.A </a></p>
+                    <p>© 2015 Proyecto Monster. Todos los derechos reservados | Design by  <a href="" target="_blank">  Andrés Rivadeneira-Mariela Balcazar </a></p>
                 </div>
                 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
             </div>

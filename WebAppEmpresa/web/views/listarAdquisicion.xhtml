@@ -9,7 +9,7 @@
     <h:body>
         <ui:composition template="/plantillas/template2.xhtml">
             <ui:define name="lista">
-                <p:outputLabel><h1>Adquisicion Seguro Empresa SRCGuard</h1></p:outputLabel>
+               <h1 class="letra">Adquisicion Seguro Empresa Primex-Security</h1>
                 <p:dataTable id="singleAdquisicion" var="adquisicion" value="#{adquisicionBean.adquisiciones}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
                              style="width: 100%;" styleClass="textlb" selectionMode="single"  rowKey="#{adquisicion.idAdquisicion}" >
                     <p:column headerText="Empleado">
