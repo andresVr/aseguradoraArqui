@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://webService.arqui.edu.espe.ec/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://webService.arqui.edu.espe.ec/">
+
+<xs:element name="adquisicion" type="tns:adquisicion"/>
+
+<xs:element name="cliente" type="tns:cliente"/>
+
+<xs:element name="detalleAdquisicion" type="tns:detalleAdquisicion"/>
+
+<xs:element name="empleado" type="tns:empleado"/>
+
+<xs:element name="insertarAdquisicionCabecera" type="tns:insertarAdquisicionCabecera"/>
+
+<xs:element name="insertarAdquisicionCabeceraResponse" type="tns:insertarAdquisicionCabeceraResponse"/>
+
+<xs:element name="insertarAdquisicionCuerpo" type="tns:insertarAdquisicionCuerpo"/>
+
+<xs:element name="insertarAdquisicionCuerpoLista" type="tns:insertarAdquisicionCuerpoLista"/>
+
+<xs:element name="insertarAdquisicionCuerpoListaResponse" type="tns:insertarAdquisicionCuerpoListaResponse"/>
+
+<xs:element name="insertarAdquisicionCuerpoResponse" type="tns:insertarAdquisicionCuerpoResponse"/>
+
+<xs:element name="obtenerAdquisiciones" type="tns:obtenerAdquisiciones"/>
+
+<xs:element name="obtenerAdquisicionesResponse" type="tns:obtenerAdquisicionesResponse"/>
+
+<xs:element name="obtenerCliente" type="tns:obtenerCliente"/>
+
+<xs:element name="obtenerClienteResponse" type="tns:obtenerClienteResponse"/>
+
+<xs:element name="obtenerEmpleado" type="tns:obtenerEmpleado"/>
+
+<xs:element name="obtenerEmpleadoResponse" type="tns:obtenerEmpleadoResponse"/>
+
+<xs:element name="obtenerSeguro" type="tns:obtenerSeguro"/>
+
+<xs:element name="obtenerSeguroResponse" type="tns:obtenerSeguroResponse"/>
+
+<xs:element name="seguro" type="tns:seguro"/>
+
+<xs:complexType name="obtenerEmpleado">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleado" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleado">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="dni" type="xs:string" minOccurs="0"/>
+<xs:element name="idEmpleado" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="salario" type="xs:decimal" minOccurs="0"/>
+<xs:element name="sexo" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCuerpoLista">
+<xs:sequence>
+<xs:element name="arg0" type="tns:detalleAdquisicion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="detalleAdquisicion">
+<xs:sequence>
+<xs:element ref="tns:adquisicion" minOccurs="0"/>
+<xs:element name="detalleAdquisicionPK" type="tns:detalleAdquisicionPK" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:dateTime" minOccurs="0"/>
+<xs:element ref="tns:seguro" minOccurs="0"/>
+<xs:element name="valor" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="adquisicion">
+<xs:sequence>
+<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idAdquisicion" type="xs:int" minOccurs="0"/>
+<xs:element name="idCliente" type="tns:cliente" minOccurs="0"/>
+<xs:element name="idEmpleado" type="tns:empleado" minOccurs="0"/>
+<xs:element name="total" type="xs:decimal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="correo" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="dni" type="xs:string" minOccurs="0"/>
+<xs:element name="idCliente" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="detalleAdquisicionPK">
+<xs:sequence>
+<xs:element name="idAdquisicion" type="xs:int"/>
+<xs:element name="idSeguro" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="seguro">
+<xs:sequence>
+<xs:element name="costo" type="xs:decimal" minOccurs="0"/>
+<xs:element name="idSeguro" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCuerpoListaResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerCliente">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerClienteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerAdquisiciones">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerAdquisicionesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:adquisicion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCuerpo">
+<xs:sequence>
+<xs:element name="arg0" type="tns:detalleAdquisicion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCuerpoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCabecera">
+<xs:sequence>
+<xs:element name="arg0" type="tns:adquisicion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarAdquisicionCabeceraResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerSeguro">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obtenerSeguroResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:seguro" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

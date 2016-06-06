@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/plantillas/template2.xhtml">
+            <ui:define name="lista">
+                <p:outputLabel><h1>Adquisicion Seguro Empresa SRCGuard</h1></p:outputLabel>
+                <p:dataTable id="singleAdquisicion" var="adquisicion" value="#{adquisicionBean.adquisiciones}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                             style="width: 100%;" styleClass="textlb" selectionMode="single"  rowKey="#{adquisicion.idAdquisicion}" >
+                    <p:column headerText="Empleado">
+                        <h:outputText value="#{adquisicion.idEmpleado.nombre} #{adquisicion.idEmpleado.apellido}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre Cliente" filterBy="#{adquisicion.idCliente.nombre}" filterMatchMode="contains" >
+                        <h:outputText value="#{adquisicion.idCliente.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Apellido Cliente" filterBy="#{adquisicion.idCliente.apellido}" filterMatchMode="contains" >
+                        <h:outputText value="#{adquisicion.idCliente.apellido}" />
+                    </p:column>
+
+                    <p:column headerText="Fecha: " >
+                        <h:outputText value="#{adquisicion.fecha}" />
+                    </p:column>
+
+                    <p:column headerText="Total:" >
+                        <h:outputText value="#{adquisicion.total}" />
+                    </p:column>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Nuevo" actionListener="#{adquisicionBean.nuevo()}" immediate="true" update="@form" />
+                    </f:facet>
+                </p:dataTable>
+
+
+                <p:panel header="Datos Cliente y Empleado" style="width: 100%" rendered="#{adquisicionBean.selecionarCliente }">
+                    <h:panelGrid columns="2">
+                        <p:dataTable id="singleCliente"  var="cliente" value="#{adquisicionBean.clientes}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                                     style="width: 95%;" styleClass="textlb" selectionMode="single"   selection="#{adquisicionBean.clienteSelected}" rowKey="#{cliente.idCliente}" >
+
+                            <p:column headerText="DNI">
+                                <h:outputText value="#{cliente.dni}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre Cliente" filterBy="#{cliente.nombre}" filterMatchMode="contains" >
+                                <h:outputText value="#{cliente.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido Cliente" filterBy="#{cliente.apellido}" filterMatchMode="contains" >
+                                <h:outputText value="#{cliente.apellido}" />
+                            </p:column>
+
+                            <p:ajax event="rowSelect" update="@form" listener="#{adquisicionBean.onRowSelectCliente}" />                  
+                        </p:dataTable>
+                        <p:dataTable id="singleEmpleado" var="empleado" value="#{adquisicionBean.empleados}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                                     style="width: 95%;" styleClass="textlb" selectionMode="single" selection="#{adquisicionBean.empleadoSelected}" rowKey="#{empleado.idEmpleado}" >
+
+                            <p:column headerText="DNI">
+                                <h:outputText value="#{empleado.dni}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre Empleado" filterBy="#{empleado.nombre}" filterMatchMode="contains" >
+                                <h:outputText value="#{empleado.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido Empleado" filterBy="#{empleado.apellido}" filterMatchMode="contains" >
+                                <h:outputText value="#{empleado.apellido}" />
+                            </p:column>
+
+                            <p:ajax event="rowSelect" update="@form" listener="#{adquisicionBean.onRowSelectEmp}" />         
+                        </p:dataTable>
+
+                    </h:panelGrid>
+                    <f:facet name="footer" >
+                        <p:commandButton value="Aceptar" actionListener="#{adquisicionBean.asignar()}" disabled="#{adquisicionBean.desactivarBotones}" update="@form"/>
+                        <p:commandButton value="Cancelar" actionListener="#{adquisicionBean.cancelar()}" disabled="#{adquisicionBean.desactivarBotones}" immediate="true" update="@form"/>
+                    </f:facet>
+                </p:panel>
+
+                <p:panel header="#{lugarBean.title}" style="width: 100%" rendered="#{adquisicionBean.enNuevo }">
+                    <p:outputLabel value="Seleccionar el Seguro:"/>
+                    <p:dataTable id="singleSeguro" var="seguro" value="#{adquisicionBean.seguros}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                                 style="width: 100%;" styleClass="textlb" selectionMode="single" selection="#{adquisicionBean.seguroSelected}" rowKey="#{seguro.idSeguro}" >
+
+                        <p:column headerText="Nombre" filterBy="#{seguro.nombre}" filterMatchMode="contains">
+                            <h:outputText value="#{seguro.nombre}" />
+                        </p:column>
+                         <p:column headerText="Tipo">
+                            <h:outputText value="#{seguro.tipo}" />
+                        </p:column>
+
+
+
+                        <p:ajax event="rowSelect" update="@form" listener="#{adquisicionBean.onRowSelectSeguro}" />             
+                    </p:dataTable>
+
+                    <p:dataTable id="singleDetalle" var="detalle" value="#{adquisicionBean.detalleAdquisiciones}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                                 style="width: 100%;" styleClass="textlb"   >
+
+                        <p:column headerText="Seguro" >
+                            <h:outputText value="#{detalle.seguro.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{detalle.seguro.tipo}" />
+                        </p:column>
+
+
+
+
+                        <p:column headerText="Costo" >
+                            <h:outputText value="#{detalle.seguro.costo}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <h:outputLabel value="Total Adquisición: "/>
+                            <h:outputText value=" $#{adquisicionBean.adquisicion.total}" />
+                        </f:facet>
+                    </p:dataTable>
+
+                    <p:commandButton value="Aceptar" actionListener="#{adquisicionBean.aceptar()}"  update="@form"/>
+                    <p:commandButton value="Canelar" actionListener="#{adquisicionBean.cancelar()}" immediate="true" update="@form"/>
+
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
