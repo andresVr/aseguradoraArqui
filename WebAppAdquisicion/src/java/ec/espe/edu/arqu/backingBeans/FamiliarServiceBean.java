@@ -65,6 +65,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
      */
     private Boolean disabled = true;
 
+    private Boolean desabilitarTabla=false;
     /**
      * variable tipo string para cambiar el titulo del formulario de registo o
      * modificacion.
@@ -78,7 +79,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
 
     private Boolean selecionarCliente=false;
     
-    private Boolean desactivarBotones=false;
+    private Boolean desactivarBotones=true;
     /**
      * metodo que se inicializa despues de cargar el formulario contiene la
      * anotacion postconstructor.
@@ -108,6 +109,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     System.out.println(this.familiar.getIdEmpleado()+" "+this.familiar.getFechaNacimientoFamilia());
     this.selecionarCliente=true;
     this.desactivarBotones=true;
+    this.setDesabilitarTabla(true);
     
     }
     /**
@@ -154,6 +156,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
         this.setSelecionarCliente(null);
         this.setFamiliarSelected(null);
         this.setDesactivarBotones(null);
+        this.setDesactivarBotones(true);
     }
 
     /**
@@ -171,6 +174,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     public void onRowSelectEmp(SelectEvent event) {
 //        this.disabled = false;
 //        this.disabledModificar=false;
+        this.setDesactivarBotones(false);
         this.empleado = new Empleado();
         this.empleado = this.empleadoSelected;
         System.out.println(this.empleadoSelected);
@@ -258,6 +262,15 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
     public Cliente getCliente() {
         return cliente;
     }
+
+    public Boolean getDesabilitarTabla() {
+        return desabilitarTabla;
+    }
+
+    public void setDesabilitarTabla(Boolean desabilitarTabla) {
+        this.desabilitarTabla = desabilitarTabla;
+    }
+    
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
