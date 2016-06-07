@@ -61,6 +61,7 @@ public class AdquisicionBean extends BaseBean implements Serializable {
     private DetalleAdquisicionPK pk;
 
     private Adquisicion adquisicion;
+    private DetalleAdquisicion detalleAdquisicionSelected;
     /**
      * instancia de la clase cliente que permite realizar las operaciones del
      * CRUD.
@@ -96,7 +97,9 @@ public class AdquisicionBean extends BaseBean implements Serializable {
 
     private Boolean selecionarCliente = false;
 
-    private Boolean desactivarBotones = false;
+    private Boolean desactivarBotones = true;
+    
+    
 
     /**
      * metodo que se inicializa despues de cargar el formulario contiene la
@@ -184,6 +187,10 @@ public class AdquisicionBean extends BaseBean implements Serializable {
         
         this.adquisicion.setIdCliente(this.clienteSelected);
         System.out.println(this.adquisicion.getIdCliente());
+        
+        if(this.clienteSelected == null&&this.empleadoSelected == null){
+        this.setDesactivarBotones(false);
+        }
     }
 
     public void onRowSelectEmp(SelectEvent event) {
@@ -195,6 +202,9 @@ public class AdquisicionBean extends BaseBean implements Serializable {
         // System.out.println(this.empleadoSelected);
         // this.familiar.setIdEmpleado(this.empleadoSelected);
         // System.out.println("aaa"+this.familiar.getIdEmpleado());
+        if(!this.clienteSelected.equals(null)&&!this.empleadoSelected.equals(null)){
+        this.setDesactivarBotones(false);
+        }
     }
 
     public void onRowSelectSeguro(SelectEvent event) {
@@ -207,6 +217,14 @@ public class AdquisicionBean extends BaseBean implements Serializable {
        // System.err.println(tmp.getDetalleAdquisicionPK().getIdSeguro());
         this.detalleAdquisiciones.add(tmp);
         this.seguros.remove(this.seguroSelected);
+        this.adquisicion.setTotal(this.total(this.getDetalleAdquisiciones()));
+        
+
+    }
+    public void onRowSelectDetalle(SelectEvent event) {
+         
+        this.seguros.add(detalleAdquisicionSelected.getSeguro());
+        this.detalleAdquisiciones.remove(this.detalleAdquisicionSelected);
         this.adquisicion.setTotal(this.total(this.getDetalleAdquisiciones()));
         
 
@@ -273,7 +291,7 @@ public class AdquisicionBean extends BaseBean implements Serializable {
             //this.webServiceController.insertarCuerpoLista(detalleAdquisiciones);
            insertarEnTablaDetalle();
            this.adquisiciones=this.webServiceController.obtenerAdquisiciones();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro el departamento: " + this.cliente.getNombre() + " " + this.cliente.getApellido(), null));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se registro correctamente la informacion ", null));
        
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(AdquisicionBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -326,6 +344,14 @@ public class AdquisicionBean extends BaseBean implements Serializable {
 
     public Adquisicion getAdquisicion() {
         return adquisicion;
+    }
+
+    public DetalleAdquisicion getDetalleAdquisicionSelected() {
+        return detalleAdquisicionSelected;
+    }
+
+    public void setDetalleAdquisicionSelected(DetalleAdquisicion detalleAdquisicionSelected) {
+        this.detalleAdquisicionSelected = detalleAdquisicionSelected;
     }
 
     public void setAdquisicion(Adquisicion adquisicion) {

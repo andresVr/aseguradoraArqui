@@ -79,7 +79,7 @@
                     </h:panelGrid>
                     <f:facet name="footer" >
                         <p:commandButton value="Aceptar" actionListener="#{adquisicionBean.asignar()}" disabled="#{adquisicionBean.desactivarBotones}" update="@form"/>
-                        <p:commandButton value="Cancelar" actionListener="#{adquisicionBean.cancelar()}" disabled="#{adquisicionBean.desactivarBotones}" immediate="true" update="@form"/>
+                        <p:commandButton value="Cancelar" actionListener="#{adquisicionBean.cancelar()}"  immediate="true" update="@form"/>
                     </f:facet>
                 </p:panel>
 
@@ -101,7 +101,7 @@
                     </p:dataTable>
 
                     <p:dataTable id="singleDetalle" var="detalle" value="#{adquisicionBean.detalleAdquisiciones}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
-                                 style="width: 100%;" styleClass="textlb"   >
+                                 style="width: 100%;" styleClass="textlb" selectionMode="single" selection="#{adquisicionBean.detalleAdquisicionSelected}" rowKey="#{detalle.detalleAdquisicionPK}"  >
 
                         <p:column headerText="Seguro" >
                             <h:outputText value="#{detalle.seguro.nombre}" />
@@ -111,9 +111,6 @@
                             <h:outputText value="#{detalle.seguro.tipo}" />
                         </p:column>
 
-
-
-
                         <p:column headerText="Costo" >
                             <h:outputText value="#{detalle.seguro.costo}" />
                         </p:column>
@@ -121,6 +118,7 @@
                             <h:outputLabel value="Total Adquisición: "/>
                             <h:outputText value=" $#{adquisicionBean.adquisicion.total}" />
                         </f:facet>
+                        <p:ajax event="rowSelect" update="@form" listener="#{adquisicionBean.onRowSelectDetalle}" />    
                     </p:dataTable>
 
                     <p:commandButton value="Aceptar" actionListener="#{adquisicionBean.aceptar()}"  update="@form"/>
