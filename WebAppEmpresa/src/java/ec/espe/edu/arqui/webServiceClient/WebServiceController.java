@@ -12,13 +12,14 @@ import ec.espe.edu.arqui.webservice.Cliente;
 import ec.espe.edu.arqui.webservice.DetalleAdquisicion;
 import ec.espe.edu.arqui.webservice.Empleado;
 import ec.espe.edu.arqui.webservice.Seguro;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Andres Vr
  */
-public class WebServiceController {
+public class WebServiceController implements Serializable{
 
     private AseguradoraServicio_Service aseguradoraServicioServicio;
 
