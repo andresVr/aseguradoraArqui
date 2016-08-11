@@ -16,6 +16,7 @@ import ec.espe.edu.arqui.model.Cliente;
 import ec.espe.edu.arqui.model.DetalleAdquisicion;
 import ec.espe.edu.arqui.model.Empleado;
 import ec.espe.edu.arqui.model.Seguro;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.TransactionAttribute;
@@ -28,7 +29,7 @@ import javax.jws.WebMethod;
  * @author Andres Vr
  */
 @WebService(serviceName = "AseguradoraServicio")
-public class AseguradoraServicio {
+public class AseguradoraServicio implements Serializable {
 
     @EJB
     private ClienteFacade clienteFacade;

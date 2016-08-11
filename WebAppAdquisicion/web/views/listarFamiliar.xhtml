@@ -120,7 +120,7 @@
                         <p:calendar id="txtfechaIngreso" locale="es"  pattern="dd/MM/yyyy" value="#{familiarServiceBean.detalleAdquisicion.fechaFin}" required="true" requiredMessage="Campo Requerido"/>
                         <p:message for="txtfechaIngreso"/>
 
-                        <p:outputLabel for="txtParentesco" value="Sexo: "/>
+                        <p:outputLabel for="txtParentesco" value="Parentesco: "/>
                         <p:selectOneMenu  id="txtParentesco" value="#{familiarServiceBean.familiar.parentescoFamilia}" required="true" requiredMessage="Campo Requerido">
                             <f:selectItem itemValue="HIJO" itemLabel="Hijo/a"/>
                             <f:selectItem itemValue="ESPOSO" itemLabel="Esposo/a"/>
@@ -152,7 +152,7 @@
                         <p:calendar id="txtfechaIngresoM" locale="es" pattern="dd/MM/yyyy" value="#{familiarServiceBean.detalleAdquisicion.fechaFin}" required="true" requiredMessage="Campo Requerido"/>
                         <p:message for="txtfechaIngresoM"/>
 
-                        <p:outputLabel for="txtParentescoM" value="Sexo: "/>
+                        <p:outputLabel for="txtParentescoM" value="Parentesco: "/>
                         <p:selectOneMenu  id="txtParentescoM" value="#{familiarServiceBean.familiar.parentescoFamilia}" required="true" requiredMessage="Campo Requerido">
                             <f:selectItem itemValue="HIJO" itemLabel="Hijo/a"/>
                             <f:selectItem itemValue="ESPOSO" itemLabel="Esposo/a"/>

@@ -102,6 +102,7 @@ public class FamiliarServiceBean extends BaseBean implements Serializable {
         this.cliente=new Cliente();
         this.detalleAdquisicion=new DetalleAdquisicion();
         this.setTitle("Ingresar Familiar");
+        this.disabledModificar=true;
     }
 
     public void asignar(){
