@@ -5,4 +5,9 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
+  <persistence-unit name="punit2" transaction-type="JTA">
+    <jta-data-source>jdbc/aseguradora</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
 </persistence>
