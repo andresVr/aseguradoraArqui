@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+        <ui:composition template="/plantillas/template2.xhtml">
+            <ui:define name="lista">
+                <p:outputLabel><h1>Empleados</h1></p:outputLabel>
+                <p:dataTable id="singleEmpleados" var="empleado" value="#{empleadoBean.empleados}"  paginator="true" rows="10" paginatorPosition="bottom" scrollable="true" scrollHeight="250"
+                             style="width: 100%;" styleClass="textlb" selectionMode="single" selection="#{empleadoBean.empleadoSelected}" rowKey="#{empleado.idEmpleado}" >
+                    <p:column headerText="C.I">
+                        <h:outputText value="#{empleado.dni}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre" >
+                        <h:outputText value="#{empleado.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido" >
+                        <h:outputText value="#{empleado.apellido}" />
+                    </p:column>
+
+                    <p:column headerText="Dirección" >
+                        <h:outputText value="#{empleado.direccion}" />
+                    </p:column>
+
+                    <p:column headerText="Teléfono" >
+                        <h:outputText value="#{empleado.telefono}" />
+                    </p:column>
+
+                    <p:column headerText="Género" >
+                        <h:outputText value="#{empleado.sexo}" />
+                    </p:column>
+
+                    <p:ajax event="rowSelect" update="@form" listener="#{empleadoBean.onRowSelect}" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Nuevo" actionListener="#{empleadoBean.nuevo()}" immediate="true" update="@form" disabled="#{empleadoBean.empleadoSelected ne null}" styleClass=""/>
+                        <p:commandButton value="Modificar" actionListener="#{empleadoBean.modificar()}" immediate="true" update="@form" disabled="#{empleadoBean.empleadoSelected eq null}"/>
+                        <p:commandButton value="Borrar" actionListener="#{empleadoBean.eliminar()}" immediate="true" update="@form" disabled="#{empleadoBean.empleadoSelected eq null}"/>
+                    </f:facet>
+                </p:dataTable>
+                <p:panel header="#{empleadoBean.title}" style="width: 100%" rendered="#{empleadoBean.enNuevo or empleadoBean.enModificar}">
+
+                    <h:panelGrid columns="3" style="margin: 0 auto;">
+                        <p:outputLabel for="txtCedula" value="Cedula/RUC: " rendered="#{empleadoBean.disabledModificar}"/>
+                        <p:inputText id="txtCedula" value="#{empleadoBean.empleado.dni }" rendered="#{empleadoBean.disabledModificar}" required="true" requiredMessage="Campo Requerido" validatorMessage="Solo Números">
+                            <f:validateRegex pattern="^[0-9]+$" />
+                            <f:validateLength minimum="3" maximum="15" />
+                        </p:inputText> 
+                        <p:message for="txtCedula"/>
+
+                        <p:outputLabel for="txtNombre" value="Nombres: " rendered="#{empleadoBean.disabledModificar}"/>
+                        <p:inputText id="txtNombre" value="#{empleadoBean.empleado.nombre }" rendered="#{empleadoBean.disabledModificar}" required="true" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                            <f:validateRegex pattern="^[a-zA-Z]+$" />
+                            <f:validateLength minimum="3" maximum="30" />
+                        </p:inputText> 
+                        <p:message for="txtNombre"/>
+
+                        <p:outputLabel for="txtApellido" value="Apellido: " rendered="#{empleadoBean.disabledModificar}"/>
+                        <p:inputText id="txtApellido" value="#{empleadoBean.empleado.apellido }" rendered="#{empleadoBean.disabledModificar}" required="true" requiredMessage="Campo Requerido" validatorMessage="No se permiten caracteres Especiales">
+                            <f:validateRegex pattern="^[a-zA-Z]+$" />
+                            <f:validateLength minimum="3" maximum="30" />
+                        </p:inputText> 
+                        <p:message for="txtApellido"/>
+                        
+                        <p:outputLabel for="txtDireccion" value="Dirección "/>
+                        <p:inputText id="txtDireccion" value="#{empleadoBean.empleado.direccion}"  required="true" requiredMessage="Campo Requerido">
+                            <f:validateLength minimum="3" maximum="50" />
+                        </p:inputText>
+                        <p:message for="txtDireccion"/>
+
+                         <p:outputLabel for="txtSalario" value="Salario: "/>
+                         <p:inputText id="txtSalario" value="#{empleadoBean.empleado.salario}" required="true" requiredMessage="Campo Requerido" validatorMessage="Ingrese teléfono mínimo 8 y máximo de 15 números">
+                            <f:validateLength minimum="2" maximum="5" />
+                        </p:inputText>
+                        <p:message for="txtSalario"/>
+                        
+                        
+                        <p:outputLabel for="txtSexo" value="Sexo: "/>
+                        <p:selectOneMenu  id="txtSexo" value="#{empleadoBean.empleado.sexo}" required="true" requiredMessage="Campo Requerido">
+
+                            <f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+                            <f:selectItem itemValue="FEMENINO" itemLabel="Femenino"/>
+                        </p:selectOneMenu>
+                        <p:message for="txtSexo"/>
+                        
+                        <p:outputLabel for="txtTelefono" value="Telefono: "/>
+                        <p:inputText id="txtTelefono" value="#{empleadoBean.empleado.telefono}" required="true" requiredMessage="Campo Requerido" validatorMessage="Ingrese teléfono mínimo 8 y máximo de 15 números">
+                            <f:validateLength minimum="8" maximum="15" />
+                        </p:inputText>
+                        <p:message for="txtTelefono"/>
+
+                       
+
+
+                        <p:commandButton value="Aceptar" actionListener="#{empleadoBean.aceptar()}"  update="@form"/>
+                        <p:commandButton value="Canelar" actionListener="#{empleadoBean.cancelar()}" immediate="true" update="@form"/>
+                    </h:panelGrid>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
